@@ -13,10 +13,13 @@ export default (function() {
   const projectTitle= document.querySelector(".project-display__title");
   const projectsList = document.querySelector(".projects-list");
   const taskForm = document.querySelector(".task-form");
+  const projectTitleInput = document.querySelector(".project-form__title-input");
 
   function addAllEventListeners() {
     listen(defaultProjectBtn, "click", displayDefaultProject);
     listen(projectForm, "submit", app.onProjectFormSubmit);
+    listen(projectTitleInput, "focus", editInputPlaceholder);
+    listen(projectTitleInput, "blur", editInputPlaceholder);
   }
 
   function addAllProjects(projects) {
@@ -80,6 +83,14 @@ export default (function() {
 
   function displayTasks(tasks) {
     console.log("displayTasks");
+  }
+
+  function editInputPlaceholder(e) {
+    const input = document.querySelector(`.${e.target.getAttribute("class")}`);
+    let placeholder = 
+      e.type == "focus" ? "Choose a title" :
+      e.type == "blur" ? "New Project" : "error";
+    input.setAttribute("placeholder", placeholder); 
   }
 
   function listen(target, event, action) {

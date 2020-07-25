@@ -10,24 +10,10 @@ body {
   margin: 0;
 }
 
-header {
-  background-color: $dark-blue;
-  padding: 2rem;
-}
-
 main {
   display: flex;
   flex-flow: row nowrap;
   height: 90vh;
-}
-
-h1 {
-  color: white;
-  margin: 0;
-}
-
-hr {
-  margin: 2rem 0;
 }
 
 ul {

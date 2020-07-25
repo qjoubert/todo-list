@@ -1,0 +1,11 @@
+@use "./variables" as *;
+
+header {
+  background-color: $blue;
+  padding: 2rem;
+
+  h1 {
+    color: white;
+    margin: 0;
+  }
+}

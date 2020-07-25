@@ -1,3 +1,5 @@
-@use "./partials/_base";
-@use "./partials/_project-display";
-@use "./partials/_sidebar";
+@use "./partials/base";
+@use "./partials/header";
+@use "./partials/project-display";
+@use "./partials/project-form";
+@use "./partials/sidebar";

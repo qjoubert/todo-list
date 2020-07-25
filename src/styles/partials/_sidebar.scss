@@ -1,36 +1,16 @@
 @use "./_variables" as *;
   
 .sidebar {
-  background-color: $light-blue;
-  height: 100%;
+  background-color: $grey;
   padding: 1.5rem;
+  position: relative;
   text-align: center;
   width: 25%;
-}
 
-.project-form {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-
-  &__title-input {
-    background: none;
-    color: #444e6e;
-    max-width: 60%;
-
-    &::placeholder {
-      color: #444e6e;
-    }
-  }
-
-  span {
-    font-size: 3rem;
-    background: none;
-    color: green;
-    padding: 0 1rem;
+  hr {
+    margin: 2rem 0;
   }
 }
-
 
 .project-list {
   &__item {

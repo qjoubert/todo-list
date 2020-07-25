@@ -23,6 +23,10 @@ export default (function() {
     return projects.some(project => project.title == title);
   }
 
+  function isValidTitle(title) {
+    // const regex = //i;
+  }
+
   return {
     createProject,
     getAllProjects,
