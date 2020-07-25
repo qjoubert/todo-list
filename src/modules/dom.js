@@ -43,6 +43,7 @@ export default (function() {
     projectDescription.textContent = "Here is an overview of all your current tasks";
     displayPlaceholderImage(emptyBoxVector);
     displayPlaceholderPara();
+    taskForm.style.display = "none";
   }
 
   function displayPlaceholderImage(imgSrc) {
@@ -57,13 +58,17 @@ export default (function() {
     if (document.querySelector(".placeholder-container p")) return;
 
     const p = document.createElement("p");
-    p.textContent = "there is nothing in here...";
+    p.textContent = "There is nothing in here...";
     placeholderContainer.appendChild(p);
   }
 
   function displayProject({title, description, tasks}) {
     projectTitle.textContent = title;
     projectDescription.textContent = description;
+
+    if (taskForm.style.display = "none") {
+      taskForm.style.display = "block";
+    }
 
     if (tasks.length > 0) {
       displayTasks(tasks);
