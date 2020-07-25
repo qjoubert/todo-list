@@ -7,6 +7,7 @@ export default (function() {
     populateSession();
     dom.addAllEventListeners();
     dom.addAllProjects(projectsManager.getAllProjects());
+    dom.displayDefaultProject();
   }
 
   function onProjectClick(e) {

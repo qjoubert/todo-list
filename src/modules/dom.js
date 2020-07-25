@@ -5,13 +5,17 @@ import tippy from "tippy.js";
 
 export default (function() {
 
-  const placeholderImage = document.querySelector(".project-display__placeholder-image");
+  const defaultProjectBtn = document.querySelector(".default-project-btn");
+  const placeholderContainer = document.querySelector(".placeholder-container");
+  const projectDisplay = document.querySelector(".project-display");
   const projectForm = document.querySelector(".project-form");
   const projectDescription = document.querySelector(".project-display__description");
   const projectTitle= document.querySelector(".project-display__title");
   const projectsList = document.querySelector(".projects-list");
+  const taskForm = document.querySelector(".task-form");
 
   function addAllEventListeners() {
+    listen(defaultProjectBtn, "click", displayDefaultProject);
     listen(projectForm, "submit", app.onProjectFormSubmit);
   }
 
@@ -34,18 +38,43 @@ export default (function() {
     if (element.value) element.value = "";
   }
 
-  function displayImage(imgSrc) {
-    placeholderImage.setAttribute("src", imgSrc);
+  function displayDefaultProject() {
+    projectTitle.textContent = "Welcome back";
+    projectDescription.textContent = "Here is an overview of all your current tasks";
+    displayPlaceholderImage(emptyBoxVector);
+    displayPlaceholderPara();
+  }
+
+  function displayPlaceholderImage(imgSrc) {
+    if (document.querySelector(".placeholder-container img")) return;
+    
+    const image = new Image();
+    image.src = imgSrc;
+    placeholderContainer.appendChild(image);
+  }
+
+  function displayPlaceholderPara() {
+    if (document.querySelector(".placeholder-container p")) return;
+
+    const p = document.createElement("p");
+    p.textContent = "there is nothing in here...";
+    placeholderContainer.appendChild(p);
   }
 
   function displayProject({title, description, tasks}) {
     projectTitle.textContent = title;
     projectDescription.textContent = description;
-    displayTasks(tasks);
+
+    if (tasks.length > 0) {
+      displayTasks(tasks);
+    } else {
+      displayPlaceholderImage(emptyBoxVector);
+      displayPlaceholderPara();
+    }
   }
 
   function displayTasks(tasks) {
-    if (tasks.length == 0) return displayImage(emptyBoxVector);
+    console.log("displayTasks");
   }
 
   function listen(target, event, action) {
@@ -84,6 +113,7 @@ export default (function() {
     addAllProjects,
     addProject,
     clear,
+    displayDefaultProject,
     displayProject,
     listen,
     listenAll,
