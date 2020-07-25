@@ -12,7 +12,7 @@ export default (function() {
   function onProjectClick(e) {
     const title = e.target.dataset.title;
     const project = projectsManager.getProject(title);
-    console.log(project);
+    dom.displayProject(project);
   }
 
   function onProjectFormSubmit(e) {

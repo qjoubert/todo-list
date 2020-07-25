@@ -23,6 +23,14 @@ module.exports = {
         }
       },
       {
+        test: /\.sass/,
+        use: [
+          "style-loader",
+          "css-loader",
+          "sass-loader"
+        ]
+      },
+      {
         test: /\.css/,
         use: [
           "style-loader",
@@ -37,6 +45,13 @@ module.exports = {
           options: {
             presets: ["@babel/preset-env"]
           }
+        }
+      },
+      {
+        test: /\.jpg/,
+        loader: "file-loader",
+        options: {
+          outputPath: "assets/images"
         }
       }
     ]

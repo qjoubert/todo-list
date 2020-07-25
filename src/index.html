@@ -10,20 +10,21 @@
     <h1>Just<em>Do</em>It</h1>
   </header>
   <main>
-    <section class="explorer">
+    <section class="sidebar">
       <h2>Projects</h2>
       <hr>
       <form action="#" class="project-form">
         <span>+</span>
-        <input class="project-name" type="text" placeholder="New Project">
+        <input class="project-form__title-input" type="text" placeholder="New Project">
       </form>
-      <ul class="projects">
-        <li>
-          <button class="project-btn">Global</button>
-        </li>
-      </ul>
+      <ul class="projects-list"></ul>
+      <button class="new-project-btn">Global</button>
     </section>
-    <section class="tasks">
+    <section class="project-display">
+      <h2 class="project-display__title"></h2>
+      <p class="project-display__description"></p>
+      <img src="#" alt="" class="project-display__placeholder-image">
+      <ul class="project-display__tasks"></ul>
     </section>
   </main>
 </body>

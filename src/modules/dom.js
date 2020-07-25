@@ -1,10 +1,15 @@
+import emptyBoxVector from "../assets/images/empty-box-500.jpg";
+
 import app from "./app";
 import tippy from "tippy.js";
 
 export default (function() {
 
+  const placeholderImage = document.querySelector(".project-display__placeholder-image");
   const projectForm = document.querySelector(".project-form");
-  const projectsList = document.querySelector("ul.projects");
+  const projectDescription = document.querySelector(".project-display__description");
+  const projectTitle= document.querySelector(".project-display__title");
+  const projectsList = document.querySelector(".projects-list");
 
   function addAllEventListeners() {
     listen(projectForm, "submit", app.onProjectFormSubmit);
@@ -17,7 +22,7 @@ export default (function() {
 
   function addProject(project) {
     const li = document.createElement("li");
-    li.classList.add("project");
+    li.classList.add("project-list__item");
     li.setAttribute("data-title", project.title);
     li.textContent = project.title;
     listen(li, "click", app.onProjectClick);
@@ -27,6 +32,20 @@ export default (function() {
   function clear(element) {
     if (element.textContent) element.textContent = "";
     if (element.value) element.value = "";
+  }
+
+  function displayImage(imgSrc) {
+    placeholderImage.setAttribute("src", imgSrc);
+  }
+
+  function displayProject({title, description, tasks}) {
+    projectTitle.textContent = title;
+    projectDescription.textContent = description;
+    displayTasks(tasks);
+  }
+
+  function displayTasks(tasks) {
+    if (tasks.length == 0) return displayImage(emptyBoxVector);
   }
 
   function listen(target, event, action) {
@@ -65,6 +84,7 @@ export default (function() {
     addAllProjects,
     addProject,
     clear,
+    displayProject,
     listen,
     listenAll,
     showTip,
