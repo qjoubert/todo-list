@@ -110,7 +110,7 @@ export default (function() {
   }
 
   function showTip(target, content) {
-    const tip = tippy(document.querySelector(target));
+    const tip = tippy(target);
       
     tip.setProps({
       content,

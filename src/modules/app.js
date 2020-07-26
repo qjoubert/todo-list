@@ -1,5 +1,6 @@
 import dom from "./dom";
 import projectsManager from "./projectsManager";
+import isValid from "./isValid";
 
 export default (function() {
 
@@ -21,9 +22,13 @@ export default (function() {
     const titleInput = e.target.lastElementChild;
     const title = titleInput.value;
     dom.clear(titleInput);
+
+    if(!isValid.title(title)) {
+      return dom.showTip(titleInput, "This is not a valid title");
+    }
     
     if (projectsManager.isTakenTitle(title)) {
-      return dom.showTip(".project-form", "This name is already taken");
+      return dom.showTip(titleInput, "This title is already taken");
     }
 
     const project = projectsManager.createProject(title);
