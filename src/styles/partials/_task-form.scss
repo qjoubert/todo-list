@@ -1,27 +1,25 @@
 @use "./variables" as *;
 
-.project-form {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  max-width: 80%;
+.task-form {
   position: absolute;
   bottom: 2rem;
-  left: 1rem;
+  left: 2rem;
+  width: 95%;
 
   &__title-input {
-    background-color: $blue;
+    background-color: $green;
     border: 1px solid transparent;
     border-radius: 5px;
     color: white;
     cursor: pointer;
-    
-    transition: background-color .3s ease, border .2s ease;
-    width: 100%;
-    max-width: 20rem;
-    
+    width: 15rem;
+    transition: 
+      background-color .3s, 
+      border .3s, 
+      width .5s;
+
     &:hover {
-      background-color: $light-blue;
+      background-color: $light-green;
     }
 
     &::placeholder {
@@ -31,9 +29,10 @@
 
     &:focus {
       background-color: white;
-      border: 2px solid $blue;
+      border: 2px solid $green;
       color: black;
       cursor: text;
+      width: 90%;
     }
 
     &:focus::placeholder {

@@ -6,18 +6,20 @@ import tippy from "tippy.js";
 export default (function() {
 
   const placeholderContainer = document.querySelector(".placeholder-container");
-  const projectDisplay = document.querySelector(".project-display");
   const projectForm = document.querySelector(".project-form");
   const projectDescription = document.querySelector(".project-display__description");
   const projectTitle= document.querySelector(".project-display__title");
   const projectsList = document.querySelector(".projects-list");
   const taskForm = document.querySelector(".task-form");
+  const taskTitleInput = document.querySelector(".task-form__title-input");
   const projectTitleInput = document.querySelector(".project-form__title-input");
 
   function addAllEventListeners() {
     listen(projectForm, "submit", app.onProjectFormSubmit);
-    listen(projectTitleInput, "focus", editInputPlaceholder);
-    listen(projectTitleInput, "blur", editInputPlaceholder);
+    listen(projectTitleInput, "focus", (e) => editPlaceholder(e, "Choose a title"));
+    listen(projectTitleInput, "blur", (e) => editPlaceholder(e, "+ New Project"));
+    listen(taskTitleInput, "focus", (e) => editPlaceholder(e, "What task did you have in mind ?"));
+    listen(taskTitleInput, "blur", (e) => editPlaceholder(e, "+ New Task"));
   }
 
   function addAllProjects(projects) {
@@ -88,11 +90,8 @@ export default (function() {
     console.log("displayTasks");
   }
 
-  function editInputPlaceholder(e) {
-    const input = document.querySelector(`.${e.target.getAttribute("class")}`);
-    let placeholder = 
-      e.type == "focus" ? "Choose a title" :
-      e.type == "blur" ? "+ New Project" : "error";
+  function editPlaceholder(e, placeholder) {
+    const input = e.target;
     input.setAttribute("placeholder", placeholder); 
   }
 
