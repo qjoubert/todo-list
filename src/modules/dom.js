@@ -14,12 +14,22 @@ export default (function() {
   const taskTitleInput = document.querySelector(".task-form__title-input");
   const projectTitleInput = document.querySelector(".project-form__title-input");
 
-  function addAllEventListeners() {
-    listen(projectForm, "submit", app.onProjectFormSubmit);
-    listen(projectTitleInput, "focus", (e) => editPlaceholder(e, "Choose a title"));
-    listen(projectTitleInput, "blur", (e) => editPlaceholder(e, "+ New Project"));
-    listen(taskTitleInput, "focus", (e) => editPlaceholder(e, "What task did you have in mind ?"));
-    listen(taskTitleInput, "blur", (e) => editPlaceholder(e, "+ New Task"));
+  function initEventListeners() {
+    projectForm.addEventListener("submit", app.onProjectFormSubmit);
+
+    projectTitleInput.addEventListener("focus", (e) => {
+      editPlaceholder(e.target, "Choose a title");
+    });
+    projectTitleInput.addEventListener("blur", (e) => {
+      editPlaceholder(e.target, "+ New Project");
+    });
+
+    taskTitleInput.addEventListener("focus", (e) => {
+      editPlaceholder(e.target, "What task did you have in minds ?");
+    });
+    taskTitleInput.addEventListener("blur", (e) => {
+      editPlaceholder(e.target, "+ New Task");
+    })
   }
 
   function addAllProjects(projects) {
@@ -90,19 +100,8 @@ export default (function() {
     console.log("displayTasks");
   }
 
-  function editPlaceholder(e, placeholder) {
-    const input = e.target;
-    input.setAttribute("placeholder", placeholder); 
-  }
-
-  function listen(target, event, action) {
-    target.addEventListener(event, (e) => action(e));
-  }
-
-  function listenAll(targets, event, action) {
-    targets.forEach(target => {
-      target.addEventListener(event, (e) => action(e));
-    });
+  function editPlaceholder(element, placeholder) {
+    element.setAttribute("placeholder", placeholder); 
   }
 
   function removeAllChildren(element) {
@@ -127,12 +126,12 @@ export default (function() {
   }
 
   return {
-    addAllEventListeners,
     addAllProjects,
     addProject,
     clear,
     displayDefaultProject,
     displayProject,
+    initEventListeners,
     listen,
     listenAll,
     showTip,

@@ -8,8 +8,10 @@ export default (function() {
     populateSession();
 
     const defaultProject = projectsManager.getProject("All Tasks");
-    dom.addAllEventListeners();
-    dom.addAllProjects(projectsManager.getAllProjects());
+    const projects = projectsManager.getAllProjects();
+    
+    dom.initEventListeners();
+    dom.addAllProjects(projects);
     dom.displayProject(defaultProject);    
   }
 
