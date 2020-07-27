@@ -6,9 +6,11 @@ export default (function() {
 
   function init() {
     populateSession();
+
+    const defaultProject = projectsManager.getProject("All Tasks");
     dom.addAllEventListeners();
     dom.addAllProjects(projectsManager.getAllProjects());
-    dom.displayDefaultProject();
+    dom.displayProject(defaultProject);    
   }
 
   function onProjectClick(e) {
@@ -38,7 +40,9 @@ export default (function() {
   function populateSession() {
     if (sessionStorage.getItem("projects")) return;
 
-    sessionStorage.setItem("projects", JSON.stringify([]));
+    sessionStorage.setItem("projects", JSON.stringify([{
+      title: "All Tasks", description: "", tasks: []
+    }]));
     sessionStorage.setItem("tasks", JSON.stringify([]));
   }
 

@@ -5,7 +5,6 @@ import tippy from "tippy.js";
 
 export default (function() {
 
-  const defaultProjectBtn = document.querySelector(".default-project-btn");
   const placeholderContainer = document.querySelector(".placeholder-container");
   const projectDisplay = document.querySelector(".project-display");
   const projectForm = document.querySelector(".project-form");
@@ -16,7 +15,6 @@ export default (function() {
   const projectTitleInput = document.querySelector(".project-form__title-input");
 
   function addAllEventListeners() {
-    listen(defaultProjectBtn, "click", displayDefaultProject);
     listen(projectForm, "submit", app.onProjectFormSubmit);
     listen(projectTitleInput, "focus", editInputPlaceholder);
     listen(projectTitleInput, "blur", editInputPlaceholder);
@@ -30,9 +28,14 @@ export default (function() {
   function addProject(project) {
     const li = document.createElement("li");
     li.classList.add("project-list__item");
-    li.setAttribute("data-title", project.title);
-    li.textContent = project.title;
-    listen(li, "click", app.onProjectClick);
+
+    const btn = document.createElement("button");
+    btn.classList.add("project-btn");
+    btn.setAttribute("data-title", project.title);
+    btn.textContent = project.title;
+    listen(btn, "click", app.onProjectClick);
+
+    li.appendChild(btn);
     projectsList.appendChild(li);
   }
 
@@ -89,7 +92,7 @@ export default (function() {
     const input = document.querySelector(`.${e.target.getAttribute("class")}`);
     let placeholder = 
       e.type == "focus" ? "Choose a title" :
-      e.type == "blur" ? "New Project" : "error";
+      e.type == "blur" ? "+ New Project" : "error";
     input.setAttribute("placeholder", placeholder); 
   }
 
