@@ -15,12 +15,14 @@
     <section class="sidebar">
       <ul class="projects-list"></ul>
       
-      <form action="#" class="project-form">
+      <form action="#" class="project-form" novalidate>
         <input 
           class="project-form__title-input" 
           type="text" 
           maxLength="20"
-          placeholder="+ New Project" />
+          placeholder="+ New Project"
+          required 
+        />
       </form>
     </section>
 
@@ -32,8 +34,14 @@
         <ul class="project-display__tasks"></ul>
         <div class="placeholder-container"></div>
 
-        <form action="#" class="task-form">
-          <input type="text" class="task-form__title-input" placeholder="+ New Task">
+        <form action="#" class="task-form" novalidate>
+          <input 
+            type="text" 
+            class="task-form__description-input" 
+            maxLength="50"
+            placeholder="+ New Task"
+            required 
+          />
         </form>
 
       </section>

@@ -11,11 +11,12 @@ export default (function() {
   const projectTitle= document.querySelector(".project-display__title");
   const projectsList = document.querySelector(".projects-list");
   const taskForm = document.querySelector(".task-form");
-  const taskTitleInput = document.querySelector(".task-form__title-input");
+  const taskDescriptionInput = document.querySelector(".task-form__description-input");
   const projectTitleInput = document.querySelector(".project-form__title-input");
 
   function initEventListeners() {
-    projectForm.addEventListener("submit", app.onProjectFormSubmit);
+    projectForm.addEventListener("submit", (e) => app.onProjectFormSubmit(e));
+    taskForm.addEventListener("submit", (e) => app.onTaskFormSubmit(e));
 
     projectTitleInput.addEventListener("focus", (e) => {
       editPlaceholder(e.target, "Choose a title");
@@ -24,10 +25,10 @@ export default (function() {
       editPlaceholder(e.target, "+ New Project");
     });
 
-    taskTitleInput.addEventListener("focus", (e) => {
+    taskDescriptionInput.addEventListener("focus", (e) => {
       editPlaceholder(e.target, "What task did you have in minds ?");
     });
-    taskTitleInput.addEventListener("blur", (e) => {
+    taskDescriptionInput.addEventListener("blur", (e) => {
       editPlaceholder(e.target, "+ New Task");
     })
   }
@@ -45,7 +46,7 @@ export default (function() {
     btn.classList.add("project-btn");
     btn.setAttribute("data-title", project.title);
     btn.textContent = project.title;
-    listen(btn, "click", app.onProjectClick);
+    btn.addEventListener("click", app.onProjectClick);
 
     li.appendChild(btn);
     projectsList.appendChild(li);
@@ -132,8 +133,6 @@ export default (function() {
     displayDefaultProject,
     displayProject,
     initEventListeners,
-    listen,
-    listenAll,
     showTip,
   };
 })();

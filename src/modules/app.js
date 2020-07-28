@@ -1,6 +1,6 @@
 import dom from "./dom";
+import form from "./form";
 import projectsManager from "./projectsManager";
-import isValid from "./isValid";
 
 export default (function() {
 
@@ -23,13 +23,10 @@ export default (function() {
 
   function onProjectFormSubmit(e) {
     e.preventDefault();
-    const titleInput = e.target.lastElementChild;
+    form.validate(e.target);
+    const titleInput = e.target.firstElementChild;
     const title = titleInput.value;
     dom.clear(titleInput);
-
-    if(!isValid.title(title)) {
-      return dom.showTip(titleInput, "This is not a valid title");
-    }
     
     if (projectsManager.isTakenTitle(title)) {
       return dom.showTip(titleInput, "This title is already taken");
@@ -37,6 +34,14 @@ export default (function() {
 
     const project = projectsManager.createProject(title);
     dom.addProject(project);
+  }
+
+  function onTaskFormSubmit(e) {
+    e.preventDefault;
+    form.validate(e.target);
+    const descriptionInput = e.target.firstElementChild;
+    const description = descriptionInput.value;
+    dom.clear(descriptionInput);
   }
 
   function populateSession() {
@@ -52,5 +57,6 @@ export default (function() {
     init,
     onProjectClick,
     onProjectFormSubmit,
+    onTaskFormSubmit,
   };
 })();
